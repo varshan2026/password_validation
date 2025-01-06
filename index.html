@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password</title>
+
+    <!-- fontawsome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Jost:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            font-family: "Josefin Sans", serif;
+        }
+
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form_container{
+            width: 22vw;
+            padding: 20px;
+            background-color: rgb(240, 240, 240);
+        }
+
+        .form_input{
+            margin: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        input{
+            border: none;
+            border-bottom: 1px solid black;
+            height: 30px;
+            font-size: 16px;
+            background-color: transparent;
+        }
+
+        input:focus{
+            outline: none;
+        }
+
+        .error{
+            color: red;
+            font-size: 14px;
+            margin-top: 7px;
+            display: none;
+        }
+
+        button{
+            border: none;
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+            font-family: 500;
+            background-color: black;
+            color: white;
+        }
+
+        .bttn{
+            text-align: center;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div class="container">
+        <div class="form_container">
+            <form>
+                <div class="form_input">
+                    <lable>User Name</lable>
+                    <input type="text" id="name">
+                    <p id="name_error" class="error">*please enter your name</p>
+                </div>
+                
+                <div class="form_input">
+                    <label>Password</label>
+                    <input type="password" id="password">
+                    <p id="password_error" class="error">*create your new password</p>
+                </div>
+                
+                <div class="form_input">
+                    <lable>Confirm Password</lable>
+                    <input type="password" id="repassword">
+                    <p id="repassword_error1" class="error">*enter your new password</p>
+                    <p id="repassword_error" class="error">*password does not match</p>
+                </div>
+
+                <div class="bttn">
+                    <button id="btn">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        var btn = document.getElementById('btn');
+
+        btn.addEventListener('click', function(){
+            event.preventDefault();
+
+            var name = document.getElementById('name').value;
+            var password = document.getElementById('password').value;
+            var repassword = document.getElementById('repassword').value;
+
+            var validate = true
+
+            if(name == ""){
+                document.getElementById('name_error').style.display = "block"
+                validate = false
+            }
+            else{
+                document.getElementById('name_error').style.display = "none"
+            }
+
+            if(password == ""){
+                document.getElementById('password_error').style.display = "block"
+                validate = false
+            }
+            else{
+                document.getElementById('password_error').style.display = "none"
+            }
+
+            if(repassword == ""){
+                document.getElementById('repassword_error1').style.display = "block"
+                document.getElementById('repassword_error').style.display = "none"
+                validate = false
+            }
+            else{
+                document.getElementById('repassword_error1').style.display = "none"
+            }
+
+            if(password !== repassword){
+                document.getElementById('repassword_error').style.display = "block"
+                document.getElementById('repassword_error1').style.display = "none"
+                validate = false
+            }
+            else{
+                document.getElementById('repassword_error').style.display = "none"
+            }
+
+            if(validate == true){
+                alert("successfully logged in")
+            }
+
+        })
+
+    </script>
+</body>
+</html>
